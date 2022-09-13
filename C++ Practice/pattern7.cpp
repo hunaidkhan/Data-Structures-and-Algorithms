@@ -3,8 +3,7 @@ using namespace std;
 
 int main()
 {
-    int i=1;
-    int n;
+    int i = 1, n;
     cin >> n;
     cout << endl;
 
@@ -15,10 +14,10 @@ int main()
             j++;
         }
         while(j<=n){
-            cout << "*";
+            cout << j;
             j++;
         }
-        i++;
         cout << endl;
+        i++;
     }
 }
