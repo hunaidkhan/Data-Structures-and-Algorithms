@@ -29,6 +29,6 @@ int main()
 {
     int even[6] = {2,4,6,8,12,18};
     int odd[5] = {1,3,5,7,9};
-    print(binarySearch(even, 6 ,12));
-    print(binarySearch(odd, 5 ,7));
+    cout << binarySearch(even, 6 ,12);
+    cout << (binarySearch(odd, 5 ,7));
 }
