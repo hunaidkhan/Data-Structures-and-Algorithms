@@ -47,7 +47,9 @@ int lastOccurrence(int arr[], int n, int key){
 int main()
 {
     int arr[6] = {0,5,5,6,6,6};
-    cout << firstOccurence(arr, 6, 6) << endl;
-    cout << lastOccurrence(arr, 6, 6) << endl;
+    pair<int,int> p;
+    p.first = firstOccurence(arr, 6, 6);
+    p.second = lastOccurrence(arr, 6, 6);
+    cout << p << endl;
 
 }
