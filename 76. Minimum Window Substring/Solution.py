@@ -1,25 +1,32 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        tcounter, window = {}, {}
-        for char in t:
-            tcounter[char] = 1 + tcounter.get(char, 0)
-        maxString = ""
-        have, need = 0, len(tcounter)
-        res, resLen = [-1,-1], float("infinity")
+        tcounter = {}
+        for c in t:
+            tcounter[c] = 1 + tcounter.get(c,0)
+        sliding = {}
         l = 0
-        for j in range(len(s)):
-            window[s[j]] = 1 + window.get(s[j], 0)
-            if s[j] in tcounter and tcounter[s[j]] == window[s[j]]:
-                have += 1
-            while have==need:
-                if (j-l+1) < resLen:
-                    resLen = j-l+1
-                    res = [l,j]
-                window[s[l]] -= 1
-                if s[l] in tcounter and window[s[l]] < tcounter[s[l]]:
-                    have -= 1
+        matches = 0
+        res, resLen = [-1,-1], float("infinity")
+        for r in range(len(s)):
+            sliding[s[r]] = 1 + sliding.get(s[r], 0)
+
+            if sliding[s[r]] == tcounter.get(s[r], 0):
+                matches += 1
+            while matches == len(tcounter): #possible solution
+                #store the solution
+                if (r-l+1) < resLen:
+                    res = [l,r]
+                    resLen = r-l+1
+                #shrink the window
+                sliding[s[l]] -= 1
+                if sliding[s[l]] < tcounter.get(s[l], 0):
+                    matches -= 1
                 l += 1
-        l,r= res
+        [l,r] = res
         return s[l:r+1] if resLen != float("infinity") else ""
+
+
+
+                
 
         
