@@ -8,19 +8,29 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
-        q=deque()
-        p=head.next
-        while p:
-            q.append(p)
-            p=p.next
-        p=head
-        while len(q):
-            p.next=q.pop()
-            p=p.next
-            if len(q):
-                p.next=q.popleft()
-                p=p.next
-        p.next=None   
-            
+        #find mid point of array using slow,fast method - fast pointer moves double the rate of slow so when slow is at mid fast will be at the end
+        slow,fast= head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next 
+        half2 = slow.next
+        slow.next = None #end of the result list
+        #reverse linked list
+        prev, current = None, half2
+        while current:
+            temp = current.next
+            current.next = prev
+            prev = current
+            current = temp
         
+        #merge the two lists
+         
+        first, second = head, prev #in the for loop prev pointer stops at last element which is the first after reversing
+        while second:
+            temp1, temp2 = first.next, second.next
+            first.next = second
+            second.next = temp1
+            first, second = temp1, temp2
+
+
         
