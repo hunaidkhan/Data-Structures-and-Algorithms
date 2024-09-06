@@ -14,7 +14,7 @@ class Solution:
                 break
             grpNext = kthNode.next 
             #now reverse
-            prev, curr = kthNode.next, grpPrev.next
+            prev, curr = grpNext, grpPrev.next
             while curr != grpNext:
                 temp = curr.next
                 curr.next = prev
