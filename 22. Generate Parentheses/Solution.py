@@ -1,19 +1,13 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        stack=[]
-        res=[]
-
-        def backtrack(opened, closed):
-            if opened == closed == n:
-                res.append("".join(stack))
-                return 
-            if opened < n:
-                stack.append("(")
-                backtrack(opened+1, closed)
-                stack.pop()
-            if closed < opened:
-                stack.append(")")
-                backtrack(opened, closed+1)
-                stack.pop()
-        backtrack(0, 0)
+        res = []
+        def solution(sentence, left, right):
+            if len(sentence) == n*2:
+                res.append(sentence)
+                return
+            if left < n:
+                solution(sentence+'(', left+1, right)
+            if right < left:
+                solution(sentence+')', left, right+1)
+        solution('', 0, 0)
         return res
